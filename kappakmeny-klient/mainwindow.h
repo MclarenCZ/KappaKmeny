@@ -18,6 +18,7 @@ public:
     QJsonDocument Json();
 public slots:
         void connectioncreated();
+        QString loginJson();
 
 private:
     Ui::MainWindow *ui;

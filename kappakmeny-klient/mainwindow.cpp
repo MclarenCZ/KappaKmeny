@@ -37,11 +37,18 @@ void MainWindow::connectioncreated()
     QByteArray block;
     QDataStream stream(&block, QIODevice::WriteOnly);
     stream.setVersion(QDataStream::Qt_5_0);
-    stream << Json();
+    //stream << Json().to;
+    QString data(Json().toJson(QJsonDocument::Compact));
+    stream << data;
     spojeni->write(block);
 
 
     qDebug() << "conection established";
+}
+
+QString MainWindow::loginJson()
+{
+    //QString doc = "{" + ;
 }
 
 QJsonDocument MainWindow::Json()

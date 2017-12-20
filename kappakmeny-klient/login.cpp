@@ -8,6 +8,8 @@ Login::Login(QWidget *parent) :
     ui(new Ui::Login)
 {
     ui->setupUi(this);
+    try_connect();
+
 
 
 }
@@ -50,3 +52,17 @@ void Login::on_pushButton_clicked()
     accept();
     }
 }
+
+void Login::try_connect()
+{
+    spojeni = new QTcpSocket(this);
+    connect(spojeni, &QTcpSocket::hostFound, this, &Login::on_Connected);
+
+    spojeni->connectToHost(QHostAddress("127.0.0.1"), 5858);
+}
+
+void Login::on_Connected()
+{
+    ui->status->setText("Status: Online");
+}
+
